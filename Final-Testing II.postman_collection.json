@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "695fb628-3e48-4c62-8dfd-93ab3111eb41",
+		"name": "Final-Testing II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17974445"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://parabank.parasoft.com/parabank/register.htm",
+					"protocol": "https",
+					"host": [
+						"parabank",
+						"parasoft",
+						"com"
+					],
+					"path": [
+						"parabank",
+						"register.htm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"\r",
+							"console.log(jsonObject.customer);\r",
+							"\r",
+							"pm.environment.set(\"username\", jsonObject.customer.firstName + jsonObject.customer.lastName);\r",
+							"pm.environment.set(\"customer_id\", jsonObject.customer.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/login/:username/:password",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"login",
+						":username",
+						":password"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "MarisHawkins"
+						},
+						{
+							"key": "password",
+							"value": "HMN58XGM9ZG"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view customer accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"\r",
+							"console.log(jsonObject.accounts.account[0].id);\r",
+							"\r",
+							"pm.environment.set(\"firstAccount_id\", jsonObject.accounts.account[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/customers/{{customer_id}}/accounts",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"customers",
+						"{{customer_id}}",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"\r",
+							"console.log(jsonObject);\r",
+							"\r",
+							"pm.environment.set(\"newAccount_id\", jsonObject.account.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/createAccount?customerId={{customer_id}}&newAccountType=1&fromAccountId={{firstAccount_id}}",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"createAccount"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customer_id}}"
+						},
+						{
+							"key": "newAccountType",
+							"value": "1"
+						},
+						{
+							"key": "fromAccountId",
+							"value": "{{firstAccount_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "summary of accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://parabank.parasoft.com/parabank/overview.htm",
+					"protocol": "https",
+					"host": [
+						"parabank",
+						"parasoft",
+						"com"
+					],
+					"path": [
+						"parabank",
+						"overview.htm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "summary of account - swagger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    \r",
+							"});\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"console.log(jsonObject.accounts.account);\r",
+							"pm.test(\"Accounts Overview\", function() {\r",
+							"    pm.expect(jsonObject.accounts.account).to.be.not.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/customers/{{customer_id}}/accounts",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"customers",
+						"{{customer_id}}",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download funds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"var res = pm.response.text();\r",
+							"\r",
+							"console.log(res);\r",
+							"pm.test(\"Download founds\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully transferred $200 from account\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/transfer?fromAccountId={{firstAccount_id}}&toAccountId={{newAccount_id}}&amount=200",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"transfer"
+					],
+					"query": [
+						{
+							"key": "fromAccountId",
+							"value": "{{firstAccount_id}}"
+						},
+						{
+							"key": "toAccountId",
+							"value": "{{newAccount_id}}"
+						},
+						{
+							"key": "amount",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account activity (every month)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    \r",
+							"});\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"console.log(jsonObject.transactions.transaction);\r",
+							"pm.test(\"Accounts activity\", function() {\r",
+							"    pm.expect(jsonObject.transactions.transaction).to.be.not.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLBASE}}/accounts/{{firstAccount_id}}/transactions/month/All/type/All",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"accounts",
+						"{{firstAccount_id}}",
+						"transactions",
+						"month",
+						"All",
+						"type",
+						"All"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

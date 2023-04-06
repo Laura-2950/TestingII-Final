@@ -68,3 +68,4 @@ por ejemplo, un generador de datos: https://generatedata.com
 - [Front End Test 4](http://localhost:63342/PageObjectModel/target/SparkFrontEnd4.html)
 - [Back End](http://localhost:63342/PageObjectModel/target/SparkBackEnd.html)
 
+#### Se adjunta collección de Postman Final-Testing II.postman_collection.jsn
