@@ -1,10 +1,10 @@
 # Proyecto Final
 ## Testing II
 
-####Objetivo
+#### Objetivo
 Crear un proyecto completo de Pruebas Automatizadas usando Java y Selenium, con Suites, Etiquetas e Informes, 
 validando también una API RestAssured. 
-####Sistema bajo prueba:
+#### Sistema bajo prueba:
 Para [Bank](https://parabank.parasoft.com/parabank/index.htm)
 
 Documentación:
@@ -13,11 +13,11 @@ Documentación:
 - [Admin Page](https://parabank.parasoft.com/parabank/admin.htm)
 
 
-####Título del caso de prueba:
+#### Título del caso de prueba:
 Proceso de registro, apertura de una nueva cuenta, visión general de la cuenta, 
 transferencia de fondos, actividad de la cuenta, para todas las etapas de las pruebas frontales
 
-####Pruebas Front-End:
+#### Pruebas Front-End:
 
 ● Registro
 
@@ -48,7 +48,7 @@ transferencia de fondos, actividad de la cuenta, para todas las etapas de las pr
     ○ Haga clic en una cuenta en la columna <Cuenta>. 
     ○ Compruebe que el texto "Detalles de la cuenta" es visible en la pantalla
 
-####Prueba Back-End de la API Rest:
+#### Prueba Back-End de la API Rest:
 ● Validación del código de estado 200
 
     ○ Registro URL: https://parabank.parasoft.com/parabank/register.htm
@@ -60,7 +60,7 @@ transferencia de fondos, actividad de la cuenta, para todas las etapas de las pr
 No es necesario introducir datos reales en los formularios durante la prueba. Podemos utilizar, 
 por ejemplo, un generador de datos: https://generatedata.com
 
-####Informes con Extent:
+#### Informes con Extent:
 
 - [Front End Test 1](http://localhost:63342/PageObjectModel/target/SparkFrontEnd1.html)
 - [Front End Test 2](http://localhost:63342/PageObjectModel/target/SparkFrontEnd2.html)
